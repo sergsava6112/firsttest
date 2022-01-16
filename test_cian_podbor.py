@@ -1,11 +1,14 @@
+from cian_page import PerehodHelper
 
-from selenium.webdriver.common.keys import Keys
-class TestCianPodbor:
-    def test_perehod(self, driver):
-        driver.get('https://www.cian.ru')
-        assert 'Циан' in driver.title
-        button = driver.find_element_by_xpath('//a[@href = "/podbor-rieltora/"]')
-        button.send_keys(Keys.RETURN)
-        assert 'https://spb.cian.ru/podbor-rieltora/' in driver.current_url
+
+def test_perehod(driver):
+    cian_main_page = PerehodHelper(driver)
+    cian_main_page.go_to_site()
+    assert 'Циан' in driver.title
+    cian_main_page.serch_demand_button()
+    assert 'https://spb.cian.ru/podbor-rieltora/' in driver.current_url
+
+
+
 
 
